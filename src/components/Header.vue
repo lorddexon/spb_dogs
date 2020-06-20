@@ -38,7 +38,9 @@ export default {
   methods: {
     goPage (page) {
       if (this.$route.name !== page) {
-        this.$store.dispatch('loadBreeds', { breed: null })
+        this.$store.dispatch('loadBreeds', {
+          breed: null
+        })
         this.$router.push({ name: page })
       }
     }
@@ -63,7 +65,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         text-decoration: none;
-        color:#626262;
+        color: $grey;
         & * {
           transition: all 0.1s;
         }
@@ -71,16 +73,16 @@ export default {
           font-size: 1.6rem;
         }
         &:hover, &_active {
-          color:#FFFFFF;
+          color:$white;
           path {
-            fill: white;
+            fill: $white;
           }
         }
       }
     }
   }
   .dogs_project-name {
-    color: #3C59F0;
+    color: $blue;
     text-transform: uppercase;
     font-size: 2.8rem;
     font-weight: 500;
@@ -88,7 +90,7 @@ export default {
     cursor: pointer;
     transition: all 0.1s;
     &:hover {
-      color:#fff;
+      color:$white;
     }
   }
 </style>

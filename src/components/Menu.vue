@@ -12,7 +12,7 @@
 
           <div class="dogs__breeds-name dogs__breeds-name_selected"
             v-if="this.$route.params.breed"
-            @click="selectBreed(null, false)">
+            @click="selectBreed('main', false)">
             <span>{{this.$route.params.breed | capitalize}}</span>
             <i class="close"></i>
           </div>
@@ -39,7 +39,7 @@
         <div class="dogs__breeds dogs__breeds_available"
           v-show="!isCollapsed && getSection !== 'favorite'">
           <div class="dogs__breeds-name dogs__breeds-name_all">
-            <span @click="selectBreed(null)">Все пёсели</span>
+            <span @click="selectBreed('main')">Все пёсели</span>
           </div>
           <Menu-Item v-for="(breedGroup, index) in allBreeds"
             :key="index"
@@ -75,15 +75,26 @@ export default {
   },
   methods: {
     toggleSort () {
-      this.$store.commit('SET_SORT_TYPE', { sortType: this.isSorted ? 'random' : 'alphabetical' })
+      this.$store.commit('SET_SORT_TYPE', {
+        sortType: this.isSorted ? 'random' : 'alphabetical'
+      })
     },
     toggleCollapse () {
       this.isCollapsed = !this.isCollapsed
     },
     selectBreed (breed = null, toggleCollapse = true) {
-      if (this.$route.name !== breed) {
-        this.$router.push({ name: breed ? 'breed' : 'main', params: { breed } })
-        this.$store.dispatch('loadBreeds', { breed })
+      if (this.$route.params.breed !== breed && this.getSection !== breed) {
+        this.$router.push({
+          name: breed !== 'main' ? 'breed' : 'main',
+          ...(breed !== 'main' && {
+            params: {
+              breed
+            }
+          })
+        })
+        this.$store.dispatch('loadBreeds', {
+          breed: breed !== 'main' ? breed : null
+        })
       }
       if (toggleCollapse) {
         this.toggleCollapse()
@@ -120,9 +131,9 @@ export default {
     height: 2.4rem;
   }
   .dogs__switch-dropdown {
-    color:#fff;
+    color:$white;
     font-size: 1.6rem;
-    border-bottom: 0.05rem dashed #fff;
+    border-bottom: 0.05rem dashed $white;
     float: left;
     cursor: pointer;
     transition: all 0.1s;
@@ -130,7 +141,7 @@ export default {
     padding-bottom: 0.1rem;
     margin-right: 2rem;
     .arrow {
-      border: solid #fff;
+      border: solid $white;
       border-width: 0 0.12rem 0.12rem 0;
       display: inline-block;
       padding: 0.3rem;
@@ -161,7 +172,7 @@ export default {
     height: 0.8rem;
     width: 0.1rem;
     top: 0.25rem;
-    background-color: #3C59F0;
+    background-color: $blue;
   }
   .close:before {
     transform: rotate(45deg);
@@ -171,7 +182,7 @@ export default {
   }
 
   .dogs__order {
-    color:#fff;
+    color:$white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -182,14 +193,14 @@ export default {
     & > label.switch-order {
       cursor: pointer;
       user-select: none;
-      color:#626262;
+      color: $grey;
       font-size: 1.6rem;
       &.sorted {
-        color:#fff;
+        color:$white;
       }
     }
     .checkbox-btn {
-      border: 1px solid #626262;
+      border: 1px solid $grey;
       width: 2.9rem;
       height: 1.45rem;
       border-radius: 0.9rem;
@@ -204,7 +215,7 @@ export default {
         height: 0.8rem;
         width: 0.8rem;
         border-radius: 50%;
-        background: #626262;
+        background: $grey;
         transition: all 0.1s;
       }
     }
@@ -214,10 +225,10 @@ export default {
       &:checked {
         & + label {
           .checkbox-btn {
-            border-color:#fff;
+            border-color:$white;
             &:after {
               left: calc(100% - 1.1rem);
-              background:#fff;
+              background:$white;
             }
           }
         }
@@ -226,7 +237,7 @@ export default {
   }
 
   .dogs__breeds {
-    color:#626262;
+    color: $grey;
     margin: 3rem 0 -1.8rem;
   }
   .dogs__breeds-name {
@@ -237,7 +248,7 @@ export default {
       font-size: 1.2rem;
       line-height: 1.6rem;
       padding: 0.4rem 1.2rem;
-      border: 0.1rem solid #626262;
+      border: 0.1rem solid $grey;
       border-radius: 2rem;
       margin: 0 1.5rem 1.8rem 0;
       cursor: pointer;
@@ -247,8 +258,8 @@ export default {
       letter-spacing: 0.01rem;
       vertical-align: middle;
       &:hover {
-        color:#fff;
-        border-color:#fff;
+        color:$white;
+        border-color:$white;
       }
     }
     .dogs__category-name {
@@ -258,15 +269,15 @@ export default {
       font-size: 2rem;
       line-height: 2.8rem;
       &:hover {
-        color:#626262;
+        color: $grey;
       }
     }
     &_all {
       display: block;
       position: relative;
       span {
-        color:#3C59F0;
-        border-color:#3C59F0;
+        color:$blue;
+        border-color:$blue;
         text-transform: none;
       }
     }
@@ -275,8 +286,8 @@ export default {
       justify-content: center;
       align-items: center;
       margin: 0;
-      color:#3C59F0;
-      border: 0.1rem solid #3C59F0;
+      color:$blue;
+      border: 0.1rem solid $blue;
       text-transform: none;
       border-radius: 2rem;
       position: relative;
@@ -290,10 +301,10 @@ export default {
         transition: all 0s;
       }
       &:hover {
-        color:#fff;
-        border-color:#fff;
+        color:$white;
+        border-color:$white;
         .close:before, .close:after {
-          background: #fff;
+          background: $white;
         }
       }
     }

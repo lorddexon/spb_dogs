@@ -45,8 +45,8 @@ export default new Vuex.Store({
     },
 
     getPhotos: state => {
-      // сперва реализовал сортировку по алфавиту и в избранных, и только потом увидел,
-      // что в избранных сортировка не нужна, ровно как и дропдаун список
+      // сперва реализовал сортировку по алфавиту в избранных, и только потом увидел,
+      // что в избранных сортировка не нужна, как и дропдаун список, но решил оставить
       let tempPhotos
       if (state.currentSection === 'favorite') {
         tempPhotos = state.favoritePhotos
@@ -64,6 +64,7 @@ export default new Vuex.Store({
       setTimeout(() => {
         state.isLoading = false
       }, 500)
+
       return {
         photos: state.sortedPhotos.slice(0, state.photosOnPage * state.page),
         totalNumber: tempPhotos.length
@@ -92,9 +93,10 @@ export default new Vuex.Store({
   mutations: {
     SET_SORT_TYPE (state, { sortType }) {
       state.isLoading = true
+      state.sortType = sortType
+      // сбрасыыаем прокрученные фотографии и обнуляем их рандомную подгрузку
       state.sortedPhotos = []
       state.page = 1
-      state.sortType = sortType
       setTimeout(() => {
         state.isLoading = false
       }, 500)

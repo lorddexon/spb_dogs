@@ -4,7 +4,7 @@
         :photos="allPhotos.photos"
         :allFavoritePhotos="allFavoritePhotos.photos"
       />
-      <Loading :isLoadingVisible="allPhotos.photos ? allPhotos.totalNumber > allPhotos.photos.length : false"/>
+      <Loading :isLoadingVisible="allPhotos.photos && allPhotos.totalNumber > allPhotos.photos.length"/>
     </div>
 </template>
 

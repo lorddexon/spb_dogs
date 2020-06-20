@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 300;
   src: local('IBM Plex Sans'), local('IBMPlexSans'),
-    url('/fonts/IBMPlexSans-Light.ttf') format('truetype')
+    url('~@/resources/fonts/IBMPlexSans-Light.ttf') format('truetype')
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 400;
   src: local('IBM Plex Sans'), local('IBMPlexSans'),
-    url('/fonts/IBMPlexSans-Regular.ttf') format('truetype')
+    url('~@/resources/fonts/IBMPlexSans-Regular.ttf') format('truetype')
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 500;
   src: local('IBM Plex Sans'), local('IBMPlexSans'),
-    url('/fonts/IBMPlexSans-Medium.ttf') format('truetype')
+    url('~@/resources/fonts/IBMPlexSans-Medium.ttf') format('truetype')
 }
 
 @font-face {
@@ -27,7 +27,7 @@
   font-style: normal;
   font-weight: 600;
   src: local('IBM Plex Sans'), local('IBMPlexSans'),
-    url('/fonts/IBMPlexSans-SemiBold.ttf') format('truetype')
+    url('~@/resources/fonts/IBMPlexSans-SemiBold.ttf') format('truetype')
 }
 
 @font-face {
@@ -35,5 +35,5 @@
   font-style: normal;
   font-weight: 700;
   src: local('IBM Plex Sans'), local('IBMPlexSans'),
-    url('/fonts/IBMPlexSans-Bold.ttf') format('truetype')
+    url('~@/resources/fonts/IBMPlexSans-Bold.ttf') format('truetype')
 }

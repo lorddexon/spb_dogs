@@ -40,7 +40,9 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  // обозначаем разные разделы сайта (main/breed/favorite etc.)
   store.commit('SET_SECTION', to.name)
+  // сбрасываем сортировку при переключии на конкретную породу или избранные
   store.commit('SET_SORT_TYPE', { sortType: 'random' })
   next()
 })

@@ -46,7 +46,7 @@ export default {
     & > div {
       width: 1.2rem;
       height: 1.2rem;
-      border: 0.1rem solid #fff;
+      border: 0.1rem solid $white;
       border-radius: 50%;
       margin: 0 0.75rem;
       transition: all 0.2s;

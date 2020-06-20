@@ -30,7 +30,9 @@ export default {
     ...mapGetters(['getLoading'])
   },
   created () {
-    this.$store.dispatch('loadBreeds', { breed: this.$route.params.breed || null })
+    this.$store.dispatch('loadBreeds', {
+      breed: this.$route.params.breed || null
+    })
     this.$store.commit('LOAD_FAVORITE_PHOTOS')
     this.scroll()
   },

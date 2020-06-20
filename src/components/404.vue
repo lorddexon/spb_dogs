@@ -24,7 +24,7 @@ export default {
     text-align: center;
   }
   h1, p {
-    color:#fff;
+    color:$white;
   }
   p {
     font-size: 1.6rem;

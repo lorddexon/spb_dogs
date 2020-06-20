@@ -7,7 +7,8 @@
       <div class="dog__breed">
         <span>{{photo.breed | capitalize}}</span>
       </div>
-      <Heart :isFavorite="allFavoritePhotos.findIndex(favorite => photo.src === favorite.src) != -1"
+      <Heart
+        :isFavorite="allFavoritePhotos.findIndex(favorite => favorite.src === photo.src) != -1"
         @click.native="toggleFavoritePhoto(photo)"
       />
     </div>
@@ -91,7 +92,7 @@ export default {
     }
     .dog__breed {
       position: absolute;
-      color:#fff;
+      color: $white;
       font-size: 2.5rem;
       font-weight: 600;
       z-index: 1;
